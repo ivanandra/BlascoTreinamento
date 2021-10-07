@@ -1,0 +1,66 @@
+﻿
+@{
+    ViewBag.Title = "Cadastro do Cliente";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@model CursoDotNetFrameWorkCSharp.Models.Cliente
+
+@using (Html.BeginForm())
+{
+
+    <h2>
+        Cadastro do Cliente
+    </h2>
+
+    <div class="form-horizontal">
+        <h4> Informe seus dados: </h4>
+
+        @Html.ValidationSummary(excludePropertyErrors: true, message: "", htmlAttributes: new {@class = "text-danger"})
+        <div class="form-group">
+            @Html.LabelFor(Model => Model.Nome, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(Model => Model.Nome, additionalViewData: new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(Model => Model.Nome, validationMessage: "", htmlAttributes: new {@class = "text-danger"})
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(Model => Model.Email, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(Model => Model.Email, additionalViewData: new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(Model => Model.Email, validationMessage: "", htmlAttributes: new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(Model => Model.Senha, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.PasswordFor(Model => Model.Senha, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(Model => Model.Senha, validationMessage: "", htmlAttributes: new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(Model => Model.ConfirmacaSenha, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.PasswordFor(Model => Model.ConfirmacaSenha, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(Model => Model.ConfirmacaSenha, validationMessage: "", htmlAttributes: new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(Model => Model.Ativo, htmlAttributes: new { @class = "control-label col-md-2" })
+           <div class="col-md-10">
+                @Html.CheckBoxFor(Model => Model.Ativo, htmlAttributes: new { @class = "checkbox" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-10">
+                <input type="submit" value="Enviar" class="btn btn-success" />
+            </div>
+        </div>
+
+    </div>
+}
