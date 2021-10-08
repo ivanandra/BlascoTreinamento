@@ -3,12 +3,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using CursoDotNetFrameWorkCSharp.Data;
 using CursoDotNetFrameWorkCSharp.Models;
 
 namespace CursoDotNetFrameWorkCSharp.Controllers
 {
     public class ClienteController : Controller
     {
+        public static readonly AppDbContext context = new AppDbContext();
+
         [HttpGet]
         [Route(template:"novo-cliente")]
         public ActionResult Cliente()
@@ -21,7 +24,12 @@ namespace CursoDotNetFrameWorkCSharp.Controllers
         public ActionResult Cliente(Cliente cliente)
         {
             if (!ModelState.IsValid) return View(cliente);
-            //Alguma regra de negócio + gravar no banco
+
+            DateTime now = DateTime.Now;
+            cliente.DataCadastro = now;
+                context.Clientes.Add(cliente);
+                context.SaveChanges();
+
             return View(cliente);
         } 
     }
